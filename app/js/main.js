@@ -13,7 +13,8 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/root.tpl.html'
   }).state('root.home', {
     url: '/',
-    templateUrl: '../templates/home.tpl.html'
+    templateUrl: '../templates/home.tpl.html',
+    controller: 'HomeController as vm'
   }).state('root.login', {
     url: '/login',
     templateUrl: '../templates/login.tpl.html'

@@ -8,6 +8,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-cookies';
 import config from './config';
+
 import PostController from './postItemController';
 import PostService from './postItemService';
 
@@ -16,3 +17,4 @@ angular
   .controller('PostController', PostController)
   .service('PostService', PostService)
   .config(config);
+
