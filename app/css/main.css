@@ -5817,4 +5817,20 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.dropdown-menu form {
+  width: 35em; }
+  .dropdown-menu form .form-control {
+    width: 27em; }
+
+.navbar {
+  margin-bottom: 0; }
+
+.homePage {
+  height: 92vh;
+  background: url(https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=74ed0669f62ce934d161079909c707d2) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
 /*# sourceMappingURL=main.css.map */
