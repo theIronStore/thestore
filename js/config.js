@@ -25,7 +25,8 @@ let config = function($stateProvider, $urlRouterProvider){
     })
     .state('root.post',{
       url: '/post',
-      templateUrl: '../templates/post.tpl.html'
+      templateUrl: '../templates/post.tpl.html',
+      controller: 'PostController as vm'
     });
 };
 

@@ -25,7 +25,8 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/search.tpl.html'
   }).state('root.post', {
     url: '/post',
-    templateUrl: '../templates/post.tpl.html'
+    templateUrl: '../templates/post.tpl.html',
+    controller: 'PostController as vm'
   });
 };
 
@@ -62,9 +63,79 @@ var _config = require('./config');
 
 var _config2 = _interopRequireDefault(_config);
 
-_angular2['default'].module('app', ['ui.router']).config(_config2['default']);
+var _postItemController = require('./postItemController');
 
-},{"./config":1,"angular":7,"angular-cookies":4,"angular-ui-router":5,"bootstrap-sass":8,"jquery":9,"moment":10}],3:[function(require,module,exports){
+var _postItemController2 = _interopRequireDefault(_postItemController);
+
+var _postItemService = require('./postItemService');
+
+var _postItemService2 = _interopRequireDefault(_postItemService);
+
+_angular2['default'].module('app', ['ui.router', 'ngCookies']).controller('PostController', _postItemController2['default']).service('PostService', _postItemService2['default']).config(_config2['default']);
+
+},{"./config":1,"./postItemController":3,"./postItemService":4,"angular":9,"angular-cookies":6,"angular-ui-router":7,"bootstrap-sass":10,"jquery":11,"moment":12}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var PostController = function PostController($scope, $http, PostService, $state, $cookies) {
+
+  //Setting header properties needed
+  // let url = SERVER.URL;
+  // let token = $cookies.get('');
+  // SERVER.CONFIG.headers[''] = token;
+
+  var vm = this;
+  vm.postNewItem = postNewItem;
+
+  function postNewItem(newItem) {
+    console.log('hi');
+    // PostService.postItem(newItem).then((response) => {
+    //   console.log(response);
+    // });
+    // scope.newItem = {};
+  }
+};
+
+PostController.$inject = ['$scope', '$http', 'PostService', '$state', '$cookies'];
+
+exports['default'] = PostController;
+module.exports = exports['default'];
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var PostService = function PostService($http, $cookies) {
+
+  // let url = SERVER.URL;
+  // let token = $cookies.get('auth_token');
+  // SERVER.CONFIG.headers['Access-Token'] = token;
+
+  // this.postItem = postItem;
+
+  // function Item (newItem) {
+  //   this.title = newItem.title;
+  //   this.picture = newItem.picture;
+  //   this.description = newItem.description;
+  // }
+
+  // function postItem (newItem) {
+  //   let i = new Item(newItem);
+  //   return $http.post(url + '', i, SERVER.CONFIG);
+  // }
+
+};
+
+PostService.$inject = ['$http', '$cookies'];
+
+exports['default'] = PostService;
+module.exports = exports['default'];
+
+},{}],5:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -387,11 +458,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":3}],5:[function(require,module,exports){
+},{"./angular-cookies":5}],7:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4762,7 +4833,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33781,11 +33852,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":6}],8:[function(require,module,exports){
+},{"./angular":8}],10:[function(require,module,exports){
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -36150,7 +36221,7 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!
@@ -45370,7 +45441,7 @@ return jQuery;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors

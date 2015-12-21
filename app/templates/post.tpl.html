@@ -1,1 +1,8 @@
 <h3>Post Item</h3>
+
+<form ng-submit="vm.postNewItem(newItem)">
+<input ng-model="newItem.title" type="text" placeholder="item title">
+<input ng-model="newItem.picture" type="text" placeholder="item picture">
+<input ng-model="newItem.description" type="text" placeholder="item description">
+<button class="btn">Submit new Item</button>
+</form>
