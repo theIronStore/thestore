@@ -1,1 +1,8 @@
 @import "bootstrap";
+
+.dropdown-menu form{
+  width: 35em;
+  .form-control{
+    width: 27em;
+  }
+}

@@ -5817,4 +5817,9 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.dropdown-menu form {
+  width: 35em; }
+  .dropdown-menu form .form-control {
+    width: 27em; }
+
 /*# sourceMappingURL=main.css.map */
