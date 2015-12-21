@@ -4,6 +4,32 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+var HomeController = function HomeController() {
+  var vm = this;
+  vm.title = 'yay';
+};
+
+HomeController.$inject = [];
+exports['default'] = HomeController;
+module.exports = exports['default'];
+
+},{}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var sAuth = function sAuth() {};
+sAuth.$inject = [];
+exports["default"] = sAuth;
+module.exports = exports["default"];
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 var config = function config($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
@@ -13,7 +39,8 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: '../templates/root.tpl.html'
   }).state('root.home', {
     url: '/',
-    templateUrl: '../templates/home.tpl.html'
+    templateUrl: '../templates/home.tpl.html',
+    controller: 'HomeController as vm'
   }).state('root.login', {
     url: '/login',
     templateUrl: '../templates/login.tpl.html'
@@ -34,7 +61,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 exports['default'] = config;
 module.exports = exports['default'];
 
-},{}],2:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 // Make sure shim jQuery first
 'use strict';
 
@@ -62,9 +89,82 @@ var _config = require('./config');
 
 var _config2 = _interopRequireDefault(_config);
 
-_angular2['default'].module('app', ['ui.router']).config(_config2['default']);
+var _appControllersHomeController = require('../app/controllers/home.controller');
 
-},{"./config":1,"angular":7,"angular-cookies":4,"angular-ui-router":5,"bootstrap-sass":8,"jquery":9,"moment":10}],3:[function(require,module,exports){
+var _appControllersHomeController2 = _interopRequireDefault(_appControllersHomeController);
+
+var _appServicesSauth = require('../app/services/sauth');
+
+var _appServicesSauth2 = _interopRequireDefault(_appServicesSauth);
+
+_angular2['default'].module('app', ['ui.router']).config(_config2['default']).controller('HomeController', _appControllersHomeController2['default']).service('sAuth', _appServicesSauth2['default']).run(['$rootScope', '$window', 'sAuth', function ($rootScope, $window, sAuth) {
+
+  $rootScope.user = {};
+
+  $window.fbAsyncInit = function () {
+    // Executed when the SDK is loaded
+
+    FB.init({
+
+      /* 
+       The app id of the web app;
+       To register a new app visit Facebook App Dashboard
+       ( https://developers.facebook.com/apps/ ) 
+      */
+
+      appId: '189347954746387',
+
+      /* 
+       Adding a Channel File improves the performance 
+       of the javascript SDK, by addressing issues 
+       with cross-domain communication in certain browsers. 
+      */
+
+      channelUrl: 'app/channel.html',
+
+      /* 
+       Set if you want to check the authentication status
+       at the start up of the app 
+      */
+
+      status: true,
+
+      /* 
+       Enable cookies to allow the server to access 
+       the session 
+      */
+
+      cookie: true,
+
+      /* Parse XFBML */
+
+      xfbml: true
+    });
+
+    sAuth.watchAuthenticationStatusChange();
+  };
+
+  (function (d) {
+    // load the Facebook javascript SDK
+
+    var js,
+        id = 'facebook-jssdk',
+        ref = d.getElementsByTagName('script')[0];
+
+    if (d.getElementById(id)) {
+      return;
+    }
+
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+
+    ref.parentNode.insertBefore(js, ref);
+  })(document);
+}]);
+
+},{"../app/controllers/home.controller":1,"../app/services/sauth":2,"./config":3,"angular":9,"angular-cookies":6,"angular-ui-router":7,"bootstrap-sass":10,"jquery":11,"moment":12}],5:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -387,11 +487,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":3}],5:[function(require,module,exports){
+},{"./angular-cookies":5}],7:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4762,7 +4862,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.8
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33781,11 +33881,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":6}],8:[function(require,module,exports){
+},{"./angular":8}],10:[function(require,module,exports){
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -36150,7 +36250,7 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (global){
 ; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!
@@ -45370,7 +45470,7 @@ return jQuery;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -48566,7 +48666,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}]},{},[2])
+},{}]},{},[4])
 
 
 //# sourceMappingURL=main.js.map
